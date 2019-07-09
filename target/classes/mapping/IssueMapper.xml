@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qcby.telemedicine.dao.IssueMapper" >
+  <resultMap id="BaseResultMap" type="com.qcby.telemedicine.entity.Issue" >
+    <id column="issueId" property="issueId" jdbcType="BIGINT" />
+    <result column="userId" property="userId" jdbcType="BIGINT" />
+    <result column="userName" property="userName" jdbcType="CHAR" />
+    <result column="userHead" property="userHead" jdbcType="VARCHAR" />
+    <result column="issue" property="issue" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="BIT" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="docId" property="docId" jdbcType="BIGINT" />
+    <result column="docName" property="docName" jdbcType="CHAR" />
+    <result column="docHead" property="docHead" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    issueId, userId, userName, userHead, issue, type, state, answer, docId, docName, 
+    docHead
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from issue
+    where issueId = #{issueId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from issue
+    where issueId = #{issueId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qcby.telemedicine.entity.Issue" >
+    insert into issue (issueId, userId, userName, 
+      userHead, issue, type, 
+      state, answer, docId, docName, 
+      docHead)
+    values (#{issueId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=CHAR}, 
+      #{userHead,jdbcType=VARCHAR}, #{issue,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{state,jdbcType=BIT}, #{answer,jdbcType=VARCHAR}, #{docId,jdbcType=BIGINT}, #{docName,jdbcType=CHAR}, 
+      #{docHead,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qcby.telemedicine.entity.Issue" >
+    insert into issue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="issueId != null" >
+        issueId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="userHead != null" >
+        userHead,
+      </if>
+      <if test="issue != null" >
+        issue,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="docId != null" >
+        docId,
+      </if>
+      <if test="docName != null" >
+        docName,
+      </if>
+      <if test="docHead != null" >
+        docHead,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="issueId != null" >
+        #{issueId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userHead != null" >
+        #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null" >
+        #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=BIT},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="docId != null" >
+        #{docId,jdbcType=BIGINT},
+      </if>
+      <if test="docName != null" >
+        #{docName,jdbcType=CHAR},
+      </if>
+      <if test="docHead != null" >
+        #{docHead,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qcby.telemedicine.entity.Issue" >
+    update issue
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="userHead != null" >
+        userHead = #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null" >
+        issue = #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=BIT},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="docId != null" >
+        docId = #{docId,jdbcType=BIGINT},
+      </if>
+      <if test="docName != null" >
+        docName = #{docName,jdbcType=CHAR},
+      </if>
+      <if test="docHead != null" >
+        docHead = #{docHead,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where issueId = #{issueId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qcby.telemedicine.entity.Issue" >
+    update issue
+    set userId = #{userId,jdbcType=BIGINT},
+      userName = #{userName,jdbcType=CHAR},
+      userHead = #{userHead,jdbcType=VARCHAR},
+      issue = #{issue,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      state = #{state,jdbcType=BIT},
+      answer = #{answer,jdbcType=VARCHAR},
+      docId = #{docId,jdbcType=BIGINT},
+      docName = #{docName,jdbcType=CHAR},
+      docHead = #{docHead,jdbcType=VARCHAR}
+    where issueId = #{issueId,jdbcType=BIGINT}
+  </update>
+</mapper>

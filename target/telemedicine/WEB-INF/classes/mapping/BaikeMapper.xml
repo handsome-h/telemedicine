@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qcby.telemedicine.dao.BaikeMapper" >
+  <resultMap id="BaseResultMap" type="com.qcby.telemedicine.entity.Baike" >
+    <id column="baikeId" property="baikeId" jdbcType="BIGINT" />
+    <result column="symName" property="symName" jdbcType="VARCHAR" />
+    <result column="symDesc" property="symDesc" jdbcType="VARCHAR" />
+    <result column="pathogeny" property="pathogeny" jdbcType="VARCHAR" />
+    <result column="inspection" property="inspection" jdbcType="VARCHAR" />
+    <result column="diagnosis" property="diagnosis" jdbcType="VARCHAR" />
+    <result column="precaution" property="precaution" jdbcType="VARCHAR" />
+    <result column="anesis" property="anesis" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    baikeId, symName, symDesc, pathogeny, inspection, diagnosis, precaution, anesis
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from baike
+    where baikeId = #{baikeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from baike
+    where baikeId = #{baikeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qcby.telemedicine.entity.Baike" >
+    insert into baike (baikeId, symName, symDesc, 
+      pathogeny, inspection, diagnosis, 
+      precaution, anesis)
+    values (#{baikeId,jdbcType=BIGINT}, #{symName,jdbcType=VARCHAR}, #{symDesc,jdbcType=VARCHAR}, 
+      #{pathogeny,jdbcType=VARCHAR}, #{inspection,jdbcType=VARCHAR}, #{diagnosis,jdbcType=VARCHAR}, 
+      #{precaution,jdbcType=VARCHAR}, #{anesis,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qcby.telemedicine.entity.Baike" >
+    insert into baike
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="baikeId != null" >
+        baikeId,
+      </if>
+      <if test="symName != null" >
+        symName,
+      </if>
+      <if test="symDesc != null" >
+        symDesc,
+      </if>
+      <if test="pathogeny != null" >
+        pathogeny,
+      </if>
+      <if test="inspection != null" >
+        inspection,
+      </if>
+      <if test="diagnosis != null" >
+        diagnosis,
+      </if>
+      <if test="precaution != null" >
+        precaution,
+      </if>
+      <if test="anesis != null" >
+        anesis,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="baikeId != null" >
+        #{baikeId,jdbcType=BIGINT},
+      </if>
+      <if test="symName != null" >
+        #{symName,jdbcType=VARCHAR},
+      </if>
+      <if test="symDesc != null" >
+        #{symDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pathogeny != null" >
+        #{pathogeny,jdbcType=VARCHAR},
+      </if>
+      <if test="inspection != null" >
+        #{inspection,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosis != null" >
+        #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="precaution != null" >
+        #{precaution,jdbcType=VARCHAR},
+      </if>
+      <if test="anesis != null" >
+        #{anesis,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qcby.telemedicine.entity.Baike" >
+    update baike
+    <set >
+      <if test="symName != null" >
+        symName = #{symName,jdbcType=VARCHAR},
+      </if>
+      <if test="symDesc != null" >
+        symDesc = #{symDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pathogeny != null" >
+        pathogeny = #{pathogeny,jdbcType=VARCHAR},
+      </if>
+      <if test="inspection != null" >
+        inspection = #{inspection,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosis != null" >
+        diagnosis = #{diagnosis,jdbcType=VARCHAR},
+      </if>
+      <if test="precaution != null" >
+        precaution = #{precaution,jdbcType=VARCHAR},
+      </if>
+      <if test="anesis != null" >
+        anesis = #{anesis,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where baikeId = #{baikeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qcby.telemedicine.entity.Baike" >
+    update baike
+    set symName = #{symName,jdbcType=VARCHAR},
+      symDesc = #{symDesc,jdbcType=VARCHAR},
+      pathogeny = #{pathogeny,jdbcType=VARCHAR},
+      inspection = #{inspection,jdbcType=VARCHAR},
+      diagnosis = #{diagnosis,jdbcType=VARCHAR},
+      precaution = #{precaution,jdbcType=VARCHAR},
+      anesis = #{anesis,jdbcType=VARCHAR}
+    where baikeId = #{baikeId,jdbcType=BIGINT}
+  </update>
+</mapper>

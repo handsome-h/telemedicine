@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qcby.telemedicine.dao.RegistrationMapper" >
+  <resultMap id="BaseResultMap" type="com.qcby.telemedicine.entity.Registration" >
+    <id column="regId" property="regId" jdbcType="BIGINT" />
+    <result column="regNum" property="regNum" jdbcType="BIGINT" />
+    <result column="userId" property="userId" jdbcType="BIGINT" />
+    <result column="regDepartment" property="regDepartment" jdbcType="VARCHAR" />
+    <result column="regTime" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="currentTime" property="currentTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="patientName" property="patientName" jdbcType="CHAR" />
+    <result column="patientAge" property="patientAge" jdbcType="INTEGER" />
+    <result column="patientSex" property="patientSex" jdbcType="BIT" />
+    <result column="patientIdNumber" property="patientIdNumber" jdbcType="CHAR" />
+    <result column="patientPhone" property="patientPhone" jdbcType="CHAR" />
+    <result column="patientAddress" property="patientAddress" jdbcType="VARCHAR" />
+    <result column="patientDisease" property="patientDisease" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    "regId", regNum, userId, regDepartment, regTime, currentTime, type, state, patientName, patientAge,
+    patientSex, patientIdNumber, patientPhone, patientAddress, patientDisease
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from registration
+    where "regId" = #{regId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from registration
+    where "regId" = #{regId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qcby.telemedicine.entity.Registration" >
+    insert into registration ("regId", regNum, userId, 
+      regDepartment, regTime, type, 
+      state, patientName, patientAge, 
+      patientSex, patientIdNumber, patientPhone, 
+      patientAddress, patientDisease)
+    values (#{regId,jdbcType=BIGINT}, #{regNum,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{regDepartment,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, #{currentTime,jdbcType=TIMESTAMP}, #{type,jdbcType=BIT},
+      #{state,jdbcType=INTEGER}, #{patientName,jdbcType=CHAR}, #{patientAge,jdbcType=INTEGER}, 
+      #{patientSex,jdbcType=BIT}, #{patientIdNumber,jdbcType=CHAR}, #{patientPhone,jdbcType=CHAR}, 
+      #{patientAddress,jdbcType=VARCHAR}, #{patientDisease,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qcby.telemedicine.entity.Registration" >
+    insert into registration
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regId != null" >
+        "regId",
+      </if>
+      <if test="regNum != null" >
+        regNum,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="regDepartment != null" >
+        regDepartment,
+      </if>
+      <if test="regTime != null" >
+        regTime,
+      </if>
+      <if test="currentTime != null" >
+        currentTime,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="patientName != null" >
+        patientName,
+      </if>
+      <if test="patientAge != null" >
+        patientAge,
+      </if>
+      <if test="patientSex != null" >
+        patientSex,
+      </if>
+      <if test="patientIdNumber != null" >
+        patientIdNumber,
+      </if>
+      <if test="patientPhone != null" >
+        patientPhone,
+      </if>
+      <if test="patientAddress != null" >
+        patientAddress,
+      </if>
+      <if test="patientDisease != null" >
+        patientDisease,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regId != null" >
+        #{regId,jdbcType=BIGINT},
+      </if>
+      <if test="regNum != null" >
+        #{regNum,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="regDepartment != null" >
+        #{regDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentTime != null" >
+        #{currentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=CHAR},
+      </if>
+      <if test="patientAge != null" >
+        #{patientAge,jdbcType=INTEGER},
+      </if>
+      <if test="patientSex != null" >
+        #{patientSex,jdbcType=BIT},
+      </if>
+      <if test="patientIdNumber != null" >
+        #{patientIdNumber,jdbcType=CHAR},
+      </if>
+      <if test="patientPhone != null" >
+        #{patientPhone,jdbcType=CHAR},
+      </if>
+      <if test="patientAddress != null" >
+        #{patientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="patientDisease != null" >
+        #{patientDisease,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qcby.telemedicine.entity.Registration" >
+    update registration
+    <set >
+      <if test="regNum != null" >
+        regNum = #{regNum,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="regDepartment != null" >
+        regDepartment = #{regDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        regTime = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentTime != null" >
+        regTime = #{currentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="patientName != null" >
+        patientName = #{patientName,jdbcType=CHAR},
+      </if>
+      <if test="patientAge != null" >
+        patientAge = #{patientAge,jdbcType=INTEGER},
+      </if>
+      <if test="patientSex != null" >
+        patientSex = #{patientSex,jdbcType=BIT},
+      </if>
+      <if test="patientIdNumber != null" >
+        patientIdNumber = #{patientIdNumber,jdbcType=CHAR},
+      </if>
+      <if test="patientPhone != null" >
+        patientPhone = #{patientPhone,jdbcType=CHAR},
+      </if>
+      <if test="patientAddress != null" >
+        patientAddress = #{patientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="patientDisease != null" >
+        patientDisease = #{patientDisease,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where "regId" = #{regId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qcby.telemedicine.entity.Registration" >
+    update registration
+    set regNum = #{regNum,jdbcType=BIGINT},
+      userId = #{userId,jdbcType=BIGINT},
+      regDepartment = #{regDepartment,jdbcType=VARCHAR},
+      regTime = #{regTime,jdbcType=TIMESTAMP},
+      currentTime = #{currentTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=BIT},
+      state = #{state,jdbcType=INTEGER},
+      patientName = #{patientName,jdbcType=CHAR},
+      patientAge = #{patientAge,jdbcType=INTEGER},
+      patientSex = #{patientSex,jdbcType=BIT},
+      patientIdNumber = #{patientIdNumber,jdbcType=CHAR},
+      patientPhone = #{patientPhone,jdbcType=CHAR},
+      patientAddress = #{patientAddress,jdbcType=VARCHAR},
+      patientDisease = #{patientDisease,jdbcType=VARCHAR}
+    where "regId" = #{regId,jdbcType=BIGINT}
+  </update>
+</mapper>

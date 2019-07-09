@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qcby.telemedicine.dao.DoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.qcby.telemedicine.entity.Doctor" >
+    <id column="docId" property="docId" jdbcType="BIGINT" />
+    <result column="docAccount" property="docAccount" jdbcType="CHAR" />
+    <result column="docPwd" property="docPwd" jdbcType="CHAR" />
+    <result column="docHead" property="docHead" jdbcType="VARCHAR" />
+    <result column="docName" property="docName" jdbcType="CHAR" />
+    <result column="docAge" property="docAge" jdbcType="INTEGER" />
+    <result column="docSex" property="docSex" jdbcType="BIT" />
+    <result column="docIdNumber" property="docIdNumber" jdbcType="CHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="skills" property="skills" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    docId, docAccount, docPwd, docHead, docName, docAge, docSex, docIdNumber, department, 
+    skills, introduction
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where docId = #{docId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from doctor
+    where docId = #{docId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qcby.telemedicine.entity.Doctor" >
+    insert into doctor (docId, docAccount, docPwd, 
+      docHead, docName, docAge, 
+      docSex, docIdNumber, department, 
+      skills, introduction)
+    values (#{docId,jdbcType=BIGINT}, #{docAccount,jdbcType=CHAR}, #{docPwd,jdbcType=CHAR}, 
+      #{docHead,jdbcType=VARCHAR}, #{docName,jdbcType=CHAR}, #{docAge,jdbcType=INTEGER}, 
+      #{docSex,jdbcType=BIT}, #{docIdNumber,jdbcType=CHAR}, #{department,jdbcType=VARCHAR}, 
+      #{skills,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qcby.telemedicine.entity.Doctor" >
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="docId != null" >
+        docId,
+      </if>
+      <if test="docAccount != null" >
+        docAccount,
+      </if>
+      <if test="docPwd != null" >
+        docPwd,
+      </if>
+      <if test="docHead != null" >
+        docHead,
+      </if>
+      <if test="docName != null" >
+        docName,
+      </if>
+      <if test="docAge != null" >
+        docAge,
+      </if>
+      <if test="docSex != null" >
+        docSex,
+      </if>
+      <if test="docIdNumber != null" >
+        docIdNumber,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="skills != null" >
+        skills,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="docId != null" >
+        #{docId,jdbcType=BIGINT},
+      </if>
+      <if test="docAccount != null" >
+        #{docAccount,jdbcType=CHAR},
+      </if>
+      <if test="docPwd != null" >
+        #{docPwd,jdbcType=CHAR},
+      </if>
+      <if test="docHead != null" >
+        #{docHead,jdbcType=VARCHAR},
+      </if>
+      <if test="docName != null" >
+        #{docName,jdbcType=CHAR},
+      </if>
+      <if test="docAge != null" >
+        #{docAge,jdbcType=INTEGER},
+      </if>
+      <if test="docSex != null" >
+        #{docSex,jdbcType=BIT},
+      </if>
+      <if test="docIdNumber != null" >
+        #{docIdNumber,jdbcType=CHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="skills != null" >
+        #{skills,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qcby.telemedicine.entity.Doctor" >
+    update doctor
+    <set >
+      <if test="docAccount != null" >
+        docAccount = #{docAccount,jdbcType=CHAR},
+      </if>
+      <if test="docPwd != null" >
+        docPwd = #{docPwd,jdbcType=CHAR},
+      </if>
+      <if test="docHead != null" >
+        docHead = #{docHead,jdbcType=VARCHAR},
+      </if>
+      <if test="docName != null" >
+        docName = #{docName,jdbcType=CHAR},
+      </if>
+      <if test="docAge != null" >
+        docAge = #{docAge,jdbcType=INTEGER},
+      </if>
+      <if test="docSex != null" >
+        docSex = #{docSex,jdbcType=BIT},
+      </if>
+      <if test="docIdNumber != null" >
+        docIdNumber = #{docIdNumber,jdbcType=CHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="skills != null" >
+        skills = #{skills,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where docId = #{docId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qcby.telemedicine.entity.Doctor" >
+    update doctor
+    set docAccount = #{docAccount,jdbcType=CHAR},
+      docPwd = #{docPwd,jdbcType=CHAR},
+      docHead = #{docHead,jdbcType=VARCHAR},
+      docName = #{docName,jdbcType=CHAR},
+      docAge = #{docAge,jdbcType=INTEGER},
+      docSex = #{docSex,jdbcType=BIT},
+      docIdNumber = #{docIdNumber,jdbcType=CHAR},
+      department = #{department,jdbcType=VARCHAR},
+      skills = #{skills,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR}
+    where docId = #{docId,jdbcType=BIGINT}
+  </update>
+
+  <!--  自己添加的sql语句-->
+  <select id="selectByAccountAndPwd" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from doctor
+    where docAccount = #{account}
+    and  docPwd = #{pwd}
+  </select>
+</mapper>

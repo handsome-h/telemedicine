@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qcby.telemedicine.dao.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.qcby.telemedicine.entity.Schedule" >
+    <result column="scheduleId" property="scheduleId" jdbcType="BIGINT" />
+    <result column="userId" property="userId" jdbcType="BIGINT" />
+    <result column="docId" property="docId" jdbcType="BIGINT" />
+    <result column="docName" property="docName" jdbcType="CHAR" />
+    <result column="docHead" property="docHead" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="patientName" property="patientName" jdbcType="CHAR" />
+    <result column="patientAge" property="patientAge" jdbcType="INTEGER" />
+    <result column="patientSex" property="patientSex" jdbcType="BIT" />
+    <result column="patientIdNumber" property="patientIdNumber" jdbcType="CHAR" />
+    <result column="patientPhone" property="patientPhone" jdbcType="CHAR" />
+    <result column="patientAddress" property="patientAddress" jdbcType="VARCHAR" />
+    <result column="patientDisease" property="patientDisease" jdbcType="VARCHAR" />
+    <result column="drugList" property="drugList" jdbcType="VARCHAR" />
+    <result column="announcements" property="announcements" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qcby.telemedicine.entity.Schedule" >
+    insert into schedule (scheduleId, userId, docId, 
+      docName, docHead, department, 
+      patientName, patientAge, patientSex, 
+      patientIdNumber, patientPhone, patientAddress, 
+      patientDisease, drugList, announcements, 
+      createTime)
+    values (#{scheduleId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{docId,jdbcType=BIGINT}, 
+      #{docName,jdbcType=CHAR}, #{docHead,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{patientName,jdbcType=CHAR}, #{patientAge,jdbcType=INTEGER}, #{patientSex,jdbcType=BIT}, 
+      #{patientIdNumber,jdbcType=CHAR}, #{patientPhone,jdbcType=CHAR}, #{patientAddress,jdbcType=VARCHAR}, 
+      #{patientDisease,jdbcType=VARCHAR}, #{drugList,jdbcType=VARCHAR}, #{announcements,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qcby.telemedicine.entity.Schedule" >
+    insert into schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scheduleId != null" >
+        scheduleId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="docId != null" >
+        docId,
+      </if>
+      <if test="docName != null" >
+        docName,
+      </if>
+      <if test="docHead != null" >
+        docHead,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="patientName != null" >
+        patientName,
+      </if>
+      <if test="patientAge != null" >
+        patientAge,
+      </if>
+      <if test="patientSex != null" >
+        patientSex,
+      </if>
+      <if test="patientIdNumber != null" >
+        patientIdNumber,
+      </if>
+      <if test="patientPhone != null" >
+        patientPhone,
+      </if>
+      <if test="patientAddress != null" >
+        patientAddress,
+      </if>
+      <if test="patientDisease != null" >
+        patientDisease,
+      </if>
+      <if test="drugList != null" >
+        drugList,
+      </if>
+      <if test="announcements != null" >
+        announcements,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scheduleId != null" >
+        #{scheduleId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="docId != null" >
+        #{docId,jdbcType=BIGINT},
+      </if>
+      <if test="docName != null" >
+        #{docName,jdbcType=CHAR},
+      </if>
+      <if test="docHead != null" >
+        #{docHead,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=CHAR},
+      </if>
+      <if test="patientAge != null" >
+        #{patientAge,jdbcType=INTEGER},
+      </if>
+      <if test="patientSex != null" >
+        #{patientSex,jdbcType=BIT},
+      </if>
+      <if test="patientIdNumber != null" >
+        #{patientIdNumber,jdbcType=CHAR},
+      </if>
+      <if test="patientPhone != null" >
+        #{patientPhone,jdbcType=CHAR},
+      </if>
+      <if test="patientAddress != null" >
+        #{patientAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="patientDisease != null" >
+        #{patientDisease,jdbcType=VARCHAR},
+      </if>
+      <if test="drugList != null" >
+        #{drugList,jdbcType=VARCHAR},
+      </if>
+      <if test="announcements != null" >
+        #{announcements,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

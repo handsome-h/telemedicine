@@ -6,6 +6,8 @@ import com.qcby.telemedicine.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("doctorService")
 public class DoctorServiceImpl implements DoctorService {
 
@@ -24,5 +26,24 @@ public class DoctorServiceImpl implements DoctorService {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 得到所有医生信息
+     * @return
+     */
+    @Override
+    public List<Doctor> findAllDoctors() {
+        return doctorMapper.findAllDoctors();
+    }
+
+    /**
+     * 得到医生的具体信息
+     * @param docId
+     * @return
+     */
+    @Override
+    public Doctor findDoctorDetails(long docId) {
+        return doctorMapper.selectByPrimaryKey(docId);
     }
 }

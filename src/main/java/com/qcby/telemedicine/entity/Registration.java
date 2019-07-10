@@ -5,7 +5,7 @@ import java.util.Date;
 public class Registration {
     private Long  regId;
 
-    private Long regNum;
+    private String regNum;
 
     private Long userId;
 
@@ -41,12 +41,12 @@ public class Registration {
         this. regId =  regId;
     }
 
-    public Long getRegNum() {
+    public String getRegNum() {
         return regNum;
     }
 
-    public void setRegNum(Long regNum) {
-        this.regNum = regNum;
+    public void setRegNum(String regNum) {
+        this.regNum = regNum == null ? null : regNum.trim();
     }
 
     public Long getUserId() {
@@ -151,5 +151,26 @@ public class Registration {
 
     public void setCurrentTime(Date currentTime) {
         this.currentTime = currentTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Registration{" +
+                "regId=" + regId +
+                ", regNum=" + regNum +
+                ", userId=" + userId +
+                ", regDepartment='" + regDepartment + '\'' +
+                ", regTime=" + regTime +
+                ", currentTime=" + currentTime +
+                ", type=" + type +
+                ", state=" + state +
+                ", patientName='" + patientName + '\'' +
+                ", patientAge=" + patientAge +
+                ", patientSex=" + patientSex +
+                ", patientIdNumber='" + patientIdNumber + '\'' +
+                ", patientPhone='" + patientPhone + '\'' +
+                ", patientAddress='" + patientAddress + '\'' +
+                ", patientDisease='" + patientDisease + '\'' +
+                '}';
     }
 }

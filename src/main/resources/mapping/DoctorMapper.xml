@@ -10,7 +10,7 @@
     <result column="docAge" property="docAge" jdbcType="INTEGER" />
     <result column="docSex" property="docSex" jdbcType="BIT" />
     <result column="docIdNumber" property="docIdNumber" jdbcType="CHAR" />
-    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="INTEGER" />
     <result column="skills" property="skills" jdbcType="VARCHAR" />
     <result column="introduction" property="introduction" jdbcType="VARCHAR" />
   </resultMap>
@@ -169,5 +169,11 @@
     from doctor
     where docAccount = #{account}
     and  docPwd = #{pwd}
+  </select>
+
+  <select id="findAllDoctors" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from doctor
   </select>
 </mapper>

@@ -17,7 +17,7 @@ public class Doctor {
 
     private String docIdNumber;
 
-    private String department;
+    private Integer department;
 
     private String skills;
 
@@ -87,12 +87,12 @@ public class Doctor {
         this.docIdNumber = docIdNumber == null ? null : docIdNumber.trim();
     }
 
-    public String getDepartment() {
+    public Integer getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
-        this.department = department == null ? null : department.trim();
+    public void setDepartment(Integer department) {
+        this.department = department;
     }
 
     public String getSkills() {

@@ -3,7 +3,7 @@
 <mapper namespace="com.qcby.telemedicine.dao.RegistrationMapper" >
   <resultMap id="BaseResultMap" type="com.qcby.telemedicine.entity.Registration" >
     <id column="regId" property="regId" jdbcType="BIGINT" />
-    <result column="regNum" property="regNum" jdbcType="BIGINT" />
+    <result column="regNum" property="regNum" jdbcType="VARCHAR" />
     <result column="userId" property="userId" jdbcType="BIGINT" />
     <result column="regDepartment" property="regDepartment" jdbcType="VARCHAR" />
     <result column="regTime" property="regTime" jdbcType="TIMESTAMP" />

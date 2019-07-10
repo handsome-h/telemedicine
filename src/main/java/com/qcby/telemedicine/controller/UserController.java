@@ -3,6 +3,7 @@ package com.qcby.telemedicine.controller;
 import com.qcby.telemedicine.entity.Registration;
 import com.qcby.telemedicine.entity.User;
 import com.qcby.telemedicine.service.UserService;
+import com.qcby.telemedicine.utils.GenerateRegNum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -54,7 +58,7 @@ public class UserController {
     @RequestMapping("quit")
     public String quit(HttpServletRequest request){
         request.getSession().removeAttribute("user");
-        return "user/userIndex";
+        return "redirect:../index.jsp";
     }
     /**
      * 用户注册
@@ -86,14 +90,21 @@ public class UserController {
     @RequestMapping("improveUserInfo")
     public String improvePersonalInfo(HttpServletRequest request){
 
+        //从前端获取表单值
         String name = request.getParameter("name");
         Integer age = Integer.parseInt(request.getParameter("age"));
-        Boolean sex = Boolean.parseBoolean(request.getParameter("sex"));
+        //接收性别
+        Boolean sex = true;
+        if(request.getParameter("sex").equals("1")){
+            sex = false;
+        }
+
         String idNumber = request.getParameter("idNumber");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String medicalHistory = request.getParameter("medicalHistory");
 
+        //从session获取user
         User user = (User)request.getSession().getAttribute("user");
         user.setUserName(name);
         user.setUserAge(age);
@@ -102,15 +113,22 @@ public class UserController {
         user.setUserPhone(phone);
         user.setUserAddress(address);
         user.setMedicalHistory(medicalHistory);
+
+        //调用service层
         userService.improve(user);
 
         return "user/userIndex";
     }
 
+    /**
+     * 预约挂号
+     * @param request
+     * @return
+     */
     @RequestMapping("registration")
     public String registration(HttpServletRequest request){
 
-        //从前端表单获取值
+        //从前端获取表单值
         String name = request.getParameter("name");
         Integer age = Integer.parseInt(request.getParameter("age"));
         Boolean sex = Boolean.parseBoolean(request.getParameter("sex"));
@@ -120,7 +138,15 @@ public class UserController {
         String disease = request.getParameter("disease");
         String department = request.getParameter("department");
         Boolean type = Boolean.parseBoolean(request.getParameter("type"));
-        String time = request.getParameter("time");
+        //将日期字符串转为Date类型
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date time = null;
+            // 注意格式需要与上面一致，不然会出现异常
+        try {
+            time = sdf.parse(request.getParameter("time"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         //放到registration实体中
         Registration registration = new Registration();
@@ -133,17 +159,30 @@ public class UserController {
         registration.setPatientDisease(disease);
         registration.setRegDepartment(department);
         registration.setType(type);
-//        registration.setRegTime(time);
+        registration.setRegTime(time);
 
+        //设置当前挂号状态为待就诊
+        registration.setState(0);
+
+        //获取用户id
+        User user = (User)request.getSession().getAttribute("user");
+        if(user != null){
+            long id = user.getUserId();
+            registration.setUserId(id);
+        }
+        //获取当前时间
+        java.util.Date date=new java.util.Date();
+        java.sql.Date date1=new java.sql.Date(date.getTime());
+        registration.setCurrentTime(date1);
+        //设置挂号单号
+        registration.setRegNum(GenerateRegNum.generate());
+
+        System.out.println(registration);
+        //调用service层
         userService.registration(registration);
-
-
 
         return null;
     }
-
-
-
 
 
 

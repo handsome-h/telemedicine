@@ -13,6 +13,7 @@
 <body>
 <div>
     您好，${doctor.docAccount}
+    <a href="${ pageContext.request.contextPath }/doctor/quit">退出登录</a>
 </div>
 
 <div>

@@ -8,6 +8,10 @@ import com.qcby.telemedicine.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.stream.events.Comment;
+import javax.xml.ws.soap.Addressing;
+import java.lang.reflect.Method;
+
 /**
  * @author hanbin
  */
@@ -66,5 +70,15 @@ public class UserServiceImpl implements UserService {
     public boolean registration(Registration registration) {
         registrationMapper.insertSelective(registration);
         return false;
+    }
+
+
+    /**
+     * @return a
+     * @Description
+     * @Param: nul
+     */
+    public void test(){
+
     }
 }

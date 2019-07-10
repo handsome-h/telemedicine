@@ -2,6 +2,8 @@ package com.qcby.telemedicine.service;
 
 import com.qcby.telemedicine.entity.Doctor;
 
+import java.util.List;
+
 public interface DoctorService {
 
     /**
@@ -18,4 +20,17 @@ public interface DoctorService {
      * @return
      */
     boolean improve(Doctor doctor);
+
+    /**
+     * 得到所有医生信息
+     * @return
+     */
+    List<Doctor> findAllDoctors();
+
+    /**
+     * 得到某个医生的具体信息
+     * @param docId
+     * @return
+     */
+    Doctor findDoctorDetails(long docId);
 }
